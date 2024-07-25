@@ -2,7 +2,7 @@ import nodemailer from "nodemailer"
 import dotenv from "dotenv"
 dotenv.config();
 
-const mail = (senderEmail,verificationString) => {
+const mail = (senderEmail, verificationString) => {
     const mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -11,8 +11,8 @@ const mail = (senderEmail,verificationString) => {
         }
     })
 
-    const resetLink = `http://localhost:5173/resetpage/${verificationString}`;
-    
+    const resetLink = `https://bala-user-management.netlify.app/resetpage/${verificationString}`;
+
 
     const details = {
         from: process.env.User,
@@ -22,6 +22,9 @@ const mail = (senderEmail,verificationString) => {
         <h3> Dear user, </h3>
         
         <p>Sorry to hear you’re having trouble logging into your account. We got a message that you forgot your password. If this was you, you can get right back into your account or reset your password now. </p>
+
+        <p>This reset link will be active only for 10 min so change your password now!</p>
+
         <p> Click the following Link to reset your password \n ${resetLink} </p>
 
         <p>If you didn’t request a login link or a password reset, you can ignore this message. </P>

@@ -68,7 +68,7 @@ export const forgotPassword = async (req, res) => {
             charset: "alphanumeric"
         })
 
-        const expiryTime = new Date().getTime() + 30000;
+        const expiryTime = new Date().getTime() + 600000;
 
         user.verificationString = randomStr;
         user.expiryTime = expiryTime;
