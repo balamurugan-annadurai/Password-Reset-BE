@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs"
 import mail from "../Services/nodemailer.services.js";
 import randomString from "randomstring"
 
+
+// Controller function to handle user registration
 export const register = async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -28,6 +30,7 @@ export const register = async (req, res) => {
     }
 }
 
+// Controller function to handle user login
 export const login = async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -53,6 +56,7 @@ export const login = async (req, res) => {
     }
 }
 
+// Controller function to handle forgot password requests
 export const forgotPassword = async (req, res) => {
     const { email } = req.body;
 
@@ -80,6 +84,7 @@ export const forgotPassword = async (req, res) => {
     }
 }
 
+// Controller function to handle verification of password reset links
 export const verifyString = async (req, res) => {
     const { verificationString} = req.body;
     const user = await Users.findOne({ verificationString });
@@ -98,7 +103,7 @@ export const verifyString = async (req, res) => {
     res.status(200).json({ message: "matched" });
 }
 
-
+// Controller function to handle password changes
 export const changePassword = async (req, res) => {
     const { verificationString, newPassword } = req.body;
     const user = await Users.findOne({ verificationString });

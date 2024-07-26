@@ -1,8 +1,12 @@
 import nodemailer from "nodemailer"
 import dotenv from "dotenv"
-dotenv.config();
+dotenv.config(); // Configure dotenv to load environment variables from a .env file
 
+
+// Function to send a password reset email
 const mail = (senderEmail, verificationString) => {
+
+    // Create a transporter object
     const mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -11,9 +15,10 @@ const mail = (senderEmail, verificationString) => {
         }
     })
 
+    // Generate the password reset link
     const resetLink = `https://bala-user-management.netlify.app/resetpage/${verificationString}`;
 
-
+    // Email details
     const details = {
         from: process.env.User,
         to: senderEmail,
@@ -32,6 +37,7 @@ const mail = (senderEmail, verificationString) => {
         <p>Thank You</P>`
     }
 
+    // Send the email using the transporter
     mailTransporter.sendMail(details, (err) => {
         if (err) {
             console.log("Check credentials")
